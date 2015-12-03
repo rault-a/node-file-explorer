@@ -1,0 +1,46 @@
+doctype html
+html
+	head
+		title!= title
+		link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css')
+		link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
+	body
+		div.container
+			h1!= '/' + currentDir
+
+			table.table.table-hover
+				thead
+					tr
+						th
+						th Nom
+						th Poids
+						th Création
+				tbody
+					if subDir
+						tr
+							td.text-right
+								i.fa.fa-folder-open
+							td
+								a(href='..') ..
+							td
+							td
+
+					each val, index in files
+						tr
+							if val.isDir
+								td.text-right
+									i.fa.fa-folder-open
+								td
+									a(href=index)= index
+								td
+								td= moment(val.creation).format('DD/MM/YYYY HH:mm:ss')
+							else
+								td.text-right
+									i.fa.fa-file
+								td
+									a(download, href=index)= index
+								td #{val.size}
+								td= moment(val.creation).format('DD/MM/YYYY HH:mm:ss')
+
+
+			javascript(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js')
