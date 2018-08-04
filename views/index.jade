@@ -12,9 +12,9 @@ html
 				thead
 					tr
 						th
-						th Nom
-						th Poids
-						th Création
+						th Name
+						th Size
+						th Creation Time
 				tbody
 					if subDir
 						tr
@@ -25,22 +25,22 @@ html
 							td
 							td
 
-					each val, index in files
+					each val in files
 						tr
 							if val.isDir
 								td.text-right
 									i.fa.fa-folder-open
 								td
-									a(href=index)= index
+									a(href=val.filename)= val.filename
 								td
-								td= moment(val.creation).format('DD/MM/YYYY HH:mm:ss')
+								td= val.creation
 							else
 								td.text-right
 									i.fa.fa-file
 								td
-									a(download, href=index)= index
+									a(download, href=val.filename)= val.filename
 								td #{val.size}
-								td= moment(val.creation).format('DD/MM/YYYY HH:mm:ss')
+								td= val.creation
 
 
 			javascript(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js')
